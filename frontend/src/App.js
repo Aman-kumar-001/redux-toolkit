@@ -1,23 +1,34 @@
-import logo from './logo.svg';
 import './App.css';
+import {  useGetAllPostQuery , useGetPostByIdQuery } from './component/post';
+
 
 function App() {
+
+  // const response = useGetAllPostQuery();
+  const response = useGetPostByIdQuery(5);
+  // console.log(response.data)
+  
+  // if(response.isLoading) return <div>Loading....</div>
+  if(response.isLoading) return <div>Loading....</div>
+  
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>redux toolkit - RTK</h1>
+      {/* {
+        response.response.map((post) =>
+     <div>
+      <h2>{post.id}{post.title}</h2>
+      <p>{post.body}</p>
+     </div>
+        )
+      } */}  
+     <div>
+      <h2>{response.data.id}{response.data.title}</h2>
+      <p>{response.data.body}</p>
+     </div>
+
     </div>
   );
 }
